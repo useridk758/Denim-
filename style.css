@@ -1,46 +1,94 @@
 :root {
-    --denim-blue: #152238;
-    --accent: #5d8aa8;
+    --accent: #ffffff;
+    --transition: all 0.3s ease;
 }
 
 body {
-    background-color: var(--denim-blue);
-    color: #f0f0f0;
-    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://soleseriouss.com/cdn/shop/files/Denim-Tears-Shorts-The-Cotton-Wreath-Black-FW23-SOLE-SERIOUSS-3.jpg?v=1768370610');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
-.container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 3rem;
-    border-radius: 20px;
-    border: 1px solid var(--accent);
+/* Small Bold Title */
+.brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    transition: var(--transition);
 }
 
-h1 { font-size: 3rem; margin-bottom: 10px; color: var(--accent); }
+/* Search Bar Container */
+.search-box {
+    display: flex;
+    gap: 10px;
+    transition: var(--transition);
+}
 
 input {
-    width: 350px;
-    padding: 15px;
-    border-radius: 30px;
-    border: none;
-    background: #1a1a1a;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 25px;
+    border-radius: 50px;
     color: white;
-    outline: 2px solid var(--accent);
+    width: 350px;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent);
 }
 
 button {
-    padding: 15px 30px;
-    border-radius: 30px;
+    background: white;
+    color: black;
     border: none;
-    background: var(--accent);
-    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
     font-weight: bold;
     cursor: pointer;
-    margin-left: 10px;
+    transition: var(--transition);
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #e0e0e0;
+}
+
+/* Sidebar/Menu */
+.nav-menu {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
 }
