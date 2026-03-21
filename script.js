@@ -2,53 +2,55 @@ const ui = document.getElementById('ui');
 const viewer = document.getElementById('content-viewer');
 const navBar = document.getElementById('nav-bar');
 const navUrlInput = document.getElementById('nav-url-input');
+const urlInput = document.getElementById('url-input');
 
-function loadUrl(url) {
+function openSite(url) {
     if (!url) return;
+    // Format URL
     if (!url.includes('.')) {
         url = 'https://www.google.com' + encodeURIComponent(url);
     } else if (!/^http(s?):\/\//.test(url)) {
         url = 'https://' + url;
     }
     
-    ui.style.display = 'none';
+    ui.classList.add('hidden');
     viewer.style.display = 'block';
+    navBar.classList.remove('hidden');
     navBar.style.display = 'flex';
     viewer.src = url;
     navUrlInput.value = url;
 }
 
-// Home Search
+function goHome() {
+    viewer.style.display = 'none';
+    navBar.classList.add('hidden');
+    navBar.style.display = 'none';
+    ui.classList.remove('hidden');
+    viewer.src = '';
+    urlInput.value = '';
+}
+
+// Search Listeners
 document.querySelector('.search-container').addEventListener('submit', (e) => {
     e.preventDefault();
-    loadUrl(document.getElementById('url-input').value);
+    openSite(urlInput.value);
 });
 
-// Nav Bar Search
-document.getElementById('nav-go-btn').onclick = () => loadUrl(navUrlInput.value);
-
-// Exit Button
-document.getElementById('exit-btn').onclick = () => {
-    viewer.style.display = 'none';
-    navBar.style.display = 'none';
-    ui.style.display = 'flex';
-    viewer.src = '';
-};
+navUrlInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') openSite(navUrlInput.value);
+});
 
 // Settings Logic
 function toggleSettings() {
-    const modal = document.getElementById('settings-modal');
-    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    document.getElementById('settings-modal').classList.toggle('hidden');
 }
 
 function saveSettings() {
-    const newTitle = document.getElementById('set-title').value;
-    const newColor = document.getElementById('set-color').value;
-    const dimVal = document.getElementById('set-dim').value;
-
-    if (newTitle) document.getElementById('main-title').innerText = newTitle;
-    document.getElementById('main-title').style.color = newColor;
-    ui.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.${dimVal}), rgba(0,0,0,0.${dimVal})), url("background.jpg")`;
+    const titleVal = document.getElementById('set-title-input').value;
+    const colorVal = document.getElementById('set-color-input').value;
+    
+    if (titleVal) document.getElementById('main-title').innerText = titleVal;
+    document.getElementById('main-title').style.color = colorVal;
     
     toggleSettings();
 }
