@@ -9,24 +9,27 @@ form.addEventListener('submit', (e) => {
 
     if (!url) return;
 
-    // Add https if missing
-    if (!/^http(s?):\/\//.test(url)) {
+    // Basic logic to handle searching vs direct URL
+    if (!url.includes('.')) {
+        url = 'https://www.google.com' + encodeURIComponent(url);
+    } else if (!/^http(s?):\/\//.test(url)) {
         url = 'https://' + url;
     }
 
-    // 1. Show the viewer
-    viewer.style.display = 'block';
-    // 2. Hide the main UI
-    ui.style.display = 'none';
-    // 3. Set the source to the URL
-    viewer.src = url;
+    ui.style.opacity = '0';
+    setTimeout(() => {
+        ui.style.display = 'none';
+        viewer.style.display = 'block';
+        viewer.src = url;
+    }, 500);
 });
 
-// To go back, you can add a listener for a key like 'Escape'
+// Press ESC to go back to the Denim! home screen
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         viewer.style.display = 'none';
         ui.style.display = 'flex';
+        ui.style.opacity = '1';
         viewer.src = '';
     }
 });
