@@ -6,6 +6,7 @@ const __dirname = path.resolve();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Denim! running on port 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Denim! is running at http://localhost:${PORT}`);
 });
