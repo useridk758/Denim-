@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Denim!</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Ultraviolet engine scripts -->
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
 </head>
 <body>
 
-    <div class="brand">Denim!</div>
+    <div class="main-wrapper" id="ui">
+        <div class="brand">Denim!</div>
 
-    <form class="search-container">
-        <input type="text" placeholder="Enter URL or search queries...">
-        <button type="submit" id="launch">GO</button>
-    </form>
+        <form class="search-container">
+            <input type="text" id="url-input" placeholder="Enter URL (e.g. bing.com)...">
+            <button type="submit" id="launch">GO</button>
+        </form>
 
-    <div class="nav-menu">
-        <div class="nav-item">MUSIC</div>
-        <div class="nav-item">GAMES</div>
+        <div class="nav-menu">
+            <div class="nav-item">MUSIC</div>
+            <div class="nav-item">GAMES</div>
+        </div>
     </div>
+
+    <!-- This frame will hold the website you search -->
+    <iframe id="content-viewer"></iframe>
 
     <script src="script.js"></script>
 </body>
