@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,13 +7,10 @@
 }
 
 body {
-    /* 1. Background Image Fix */
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url("https://soleseriouss.com");
+    /* Fixed background image with dark overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url("https://soleseriouss.com") no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    
     color: white;
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -22,29 +21,27 @@ body {
     overflow: hidden;
 }
 
-/* 2. Denim! Text: Small, Bold, and Higher */
+/* Denim! Text: Lobster font, White, Small, and Higher */
 .brand {
-    font-weight: 900;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 25px;
-    margin-top: -15vh; /* Moves it higher than the search bar */
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    margin-top: -15vh; /* Moves it up to leave space */
     transition: all 0.3s ease;
 }
 
 .search-container {
     display: flex;
     gap: 10px;
-    transition: all 0.3s ease;
 }
 
 input {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 15px 20px;
-    border-radius: 4px; /* Slightly squared search bar */
+    border-radius: 4px;
     color: white;
     width: 380px;
     outline: none;
@@ -52,8 +49,8 @@ input {
 }
 
 input:focus {
+    width: 420px;
     border-color: white;
-    background: rgba(0, 0, 0, 0.8);
 }
 
 button#launch {
@@ -67,29 +64,25 @@ button#launch {
     transition: all 0.2s ease;
 }
 
-button#launch:hover {
-    background: #ccc;
-}
-
-/* 3. Bottom Middle Square Buttons */
+/* Bottom Square Placeholder Buttons */
 .nav-menu {
     position: absolute;
-    bottom: 50px;
+    bottom: 40px;
     display: flex;
     gap: 20px;
 }
 
 .nav-item {
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 100px; /* Square sizing */
-    height: 100px; /* Square sizing */
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 90px;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
