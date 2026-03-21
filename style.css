@@ -3,37 +3,40 @@
     --transition: all 0.3s ease;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://soleseriouss.com/cdn/shop/files/Denim-Tears-Shorts-The-Cotton-Wreath-Black-FW23-SOLE-SERIOUSS-3.jpg?v=1768370610');
+    /* Fixed: Added quotes and fixed property for the specific image address */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url("https://soleseriouss.com") no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
     color: white;
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Centers content vertically */
     height: 100vh;
-    margin: 0;
     overflow: hidden;
 }
 
-/* Small Bold Title */
+/* Center Denim! text a bit higher */
 .brand {
     font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    margin-top: -10vh; /* Moves it slightly above the true center */
     margin-bottom: 20px;
-    opacity: 0.9;
     transition: var(--transition);
 }
 
-/* Search Bar Container */
 .search-box {
     display: flex;
     gap: 10px;
-    transition: var(--transition);
 }
 
 input {
@@ -50,11 +53,37 @@ input {
 
 input:focus {
     width: 400px;
-    background: rgba(255, 255, 255, 0.2);
     border-color: var(--accent);
 }
 
-button {
+/* Menu at bottom middle */
+.nav-menu {
+    position: absolute;
+    bottom: 40px; /* Distance from bottom */
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 25px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.nav-button:hover {
+    background: white;
+    color: black;
+    transform: translateY(-3px);
+}
+
+button[type="submit"] {
     background: white;
     color: black;
     border: none;
@@ -63,32 +92,4 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: var(--transition);
-}
-
-button:hover {
-    transform: scale(1.05);
-    background: #e0e0e0;
-}
-
-/* Sidebar/Menu */
-.nav-menu {
-    position: absolute;
-    bottom: 30px;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-item {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: var(--transition);
-}
-
-.nav-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: white;
 }
