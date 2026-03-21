@@ -2,41 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Denim!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Top Nav Bar (Appears when a site is loaded) -->
-    <div id="nav-bar">
-        <button id="exit-btn">✖ Exit</button>
-        <input type="text" id="nav-url-input" placeholder="Enter URL...">
-        <button id="nav-go-btn">Go</button>
+    <!-- Browser-Style Navigation Bar -->
+    <div id="nav-bar" class="hidden">
+        <div class="nav-controls">
+            <div class="nav-btn" onclick="goHome()">🏠</div>
+        </div>
+        <div class="url-bar-container">
+            <input type="text" id="nav-url-input" spellcheck="false">
+        </div>
+        <div class="nav-controls">
+            <div id="exit-btn" onclick="goHome()">✕</div>
+        </div>
     </div>
 
     <!-- Main Home UI -->
     <div class="main-wrapper" id="ui">
         <div class="brand" id="main-title">Denim!</div>
         <form class="search-container">
-            <input type="text" id="url-input" placeholder="Type a URL or search...">
+            <input type="text" id="url-input" placeholder="Search the web or type a URL">
             <button type="submit" id="launch">GO</button>
         </form>
         <div class="nav-menu">
             <div class="nav-item" onclick="toggleSettings()">SETTINGS</div>
             <div class="nav-item">MUSIC</div>
-            <div class="nav-item">GAMES</div>
+            <div class="nav-item" onclick="alert('Games coming soon!')">GAMES</div>
         </div>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settings-modal">
+    <div id="settings-modal" class="hidden">
         <h3>Settings</h3>
-        <label>Title Text:</label>
-        <input type="text" id="set-title" placeholder="Denim!">
-        <label>Title Color:</label>
-        <input type="color" id="set-color" value="#ffffff">
-        <label>Background Dim:</label>
-        <input type="range" id="set-dim" min="0" max="9" value="4">
-        <button onclick="saveSettings()">Save & Close</button>
+        <div class="set-row">
+            <span>Site Title:</span>
+            <input type="text" id="set-title-input" placeholder="Denim!">
+        </div>
+        <div class="set-row">
+            <span>Title Color:</span>
+            <input type="color" id="set-color-input" value="#ffffff">
+        </div>
+        <button id="save-settings" onclick="saveSettings()">Apply Changes</button>
+        <button id="close-settings" onclick="toggleSettings()">Cancel</button>
     </div>
 
     <iframe id="content-viewer"></iframe>
