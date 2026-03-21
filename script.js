@@ -1,28 +1,32 @@
 const form = document.querySelector('form');
-const input = document.querySelector('input');
+const input = document.getElementById('url-input');
+const viewer = document.getElementById('content-viewer');
+const ui = document.getElementById('ui');
 
-form.addEventListener('submit', async event => {
-    event.preventDefault();
-    
-    try {
-        // Register the Service Worker
-        await window.navigator.serviceWorker.register('./uv/uv.sw.js', {
-            scope: __uv$config.prefix
-        });
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let url = input.value.trim();
 
-        let url = input.value.trim();
-        
-        // Handle search vs direct URL
-        if (!url.includes('.')) {
-            url = 'https://www.google.com' + encodeURIComponent(url);
-        } else if (!/^http(s?):\/\//.test(url)) {
-            url = 'https://' + url;
-        }
+    if (!url) return;
 
-        // Redirect into the proxy frame
-        window.location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
-    } catch (err) {
-        alert("Failed to load proxy. Ensure the /uv/ folder is uploaded.");
-        console.error(err);
+    // Add https if missing
+    if (!/^http(s?):\/\//.test(url)) {
+        url = 'https://' + url;
+    }
+
+    // 1. Show the viewer
+    viewer.style.display = 'block';
+    // 2. Hide the main UI
+    ui.style.display = 'none';
+    // 3. Set the source to the URL
+    viewer.src = url;
+});
+
+// To go back, you can add a listener for a key like 'Escape'
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        viewer.style.display = 'none';
+        ui.style.display = 'flex';
+        viewer.src = '';
     }
 });
