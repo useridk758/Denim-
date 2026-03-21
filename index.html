@@ -6,18 +6,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Top Nav Bar (Appears when a site is loaded) -->
+    <div id="nav-bar">
+        <button id="exit-btn">✖ Exit</button>
+        <input type="text" id="nav-url-input" placeholder="Enter URL...">
+        <button id="nav-go-btn">Go</button>
+    </div>
+
+    <!-- Main Home UI -->
     <div class="main-wrapper" id="ui">
-        <div class="brand">Denim!</div>
+        <div class="brand" id="main-title">Denim!</div>
         <form class="search-container">
             <input type="text" id="url-input" placeholder="Type a URL or search...">
             <button type="submit" id="launch">GO</button>
         </form>
         <div class="nav-menu">
+            <div class="nav-item" onclick="toggleSettings()">SETTINGS</div>
             <div class="nav-item">MUSIC</div>
             <div class="nav-item">GAMES</div>
         </div>
     </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal">
+        <h3>Settings</h3>
+        <label>Title Text:</label>
+        <input type="text" id="set-title" placeholder="Denim!">
+        <label>Title Color:</label>
+        <input type="color" id="set-color" value="#ffffff">
+        <label>Background Dim:</label>
+        <input type="range" id="set-dim" min="0" max="9" value="4">
+        <button onclick="saveSettings()">Save & Close</button>
+    </div>
+
     <iframe id="content-viewer"></iframe>
+
     <script src="script.js"></script>
 </body>
 </html>
