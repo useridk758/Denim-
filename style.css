@@ -6,29 +6,35 @@
     box-sizing: border-box;
 }
 
-body {
-    /* Fixed background image with dark overlay */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url("https://soleseriouss.com") no-repeat center center fixed;
-    background-size: cover;
-    color: white;
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
     font-family: 'Inter', sans-serif;
+}
+
+/* New Floral Background */
+.main-wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url("https://wallpapers.com/images/hd/denim-tears-floral-pattern-xi6hl2cjfra9tdv4.jpg") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+    position: relative;
+    z-index: 10;
 }
 
-/* Denim! Text: Lobster font, White, Small, and Higher */
+/* Lobster Font Denim! Text */
 .brand {
     font-family: 'Lobster', cursive;
     color: white;
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 20px;
-    margin-top: -15vh; /* Moves it up to leave space */
-    transition: all 0.3s ease;
+    margin-top: -15vh;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .search-container {
@@ -37,7 +43,7 @@ body {
 }
 
 input {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 15px 20px;
@@ -48,10 +54,7 @@ input {
     transition: all 0.3s ease;
 }
 
-input:focus {
-    width: 420px;
-    border-color: white;
-}
+input:focus { width: 420px; border-color: white; }
 
 button#launch {
     background: white;
@@ -61,10 +64,9 @@ button#launch {
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-/* Bottom Square Placeholder Buttons */
+/* Bottom Square Buttons */
 .nav-menu {
     position: absolute;
     bottom: 40px;
@@ -80,15 +82,24 @@ button#launch {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
     font-weight: 800;
     font-size: 0.7rem;
-    letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.nav-item:hover {
+.nav-item:hover { background: white; color: black; transform: translateY(-5px); }
+
+/* The "Inside the Website" Viewer */
+#content-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none; /* Hidden until search */
+    z-index: 100;
     background: white;
-    color: black;
-    transform: translateY(-5px);
 }
