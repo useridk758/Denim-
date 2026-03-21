@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
+body, html { height: 100%; width: 100%; overflow: hidden; background: #000; }
 
-/* Background with Dynamic Dimming */
+.hidden { display: none !important; opacity: 0; pointer-events: none; }
+
+/* Home UI */
 .main-wrapper {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("background.jpg") no-repeat center center;
     background-size: cover;
@@ -12,50 +14,80 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 0.5s ease;
 }
 
-.brand { font-family: 'Lobster', cursive; color: white; font-size: 2rem; margin-bottom: 20px; margin-top: -15vh; }
+.brand { font-family: 'Lobster', cursive; color: white; font-size: 2.2rem; margin-bottom: 25px; margin-top: -12vh; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
-/* Top Nav Bar */
+/* Browser-Style Nav Bar */
 #nav-bar {
     position: fixed;
     top: 0; left: 0; width: 100%;
-    height: 50px;
-    background: #1a1a1a;
-    display: none; /* Hidden by default */
+    height: 45px;
+    background: #202124; /* Chrome Dark Gray */
+    display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 10px;
     gap: 10px;
-    z-index: 200;
+    z-index: 1000;
+    border-bottom: 1px solid #3c4043;
 }
 
-#nav-bar input { flex: 1; background: #333; border: 1px solid #444; color: white; padding: 8px 15px; border-radius: 5px; }
-#nav-bar button { background: #444; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 5px; }
+.url-bar-container { flex: 1; display: flex; justify-content: center; }
+
+#nav-url-input {
+    width: 60%;
+    background: #292a2d;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 15px;
+    color: #e8eaed;
+    font-size: 13px;
+    outline: none;
+    border: 1px solid transparent;
+}
+
+#nav-url-input:focus { border: 1px solid #8ab4f8; }
+
+.nav-controls { display: flex; gap: 8px; }
+.nav-btn, #exit-btn {
+    color: #9aa0a6;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+.nav-btn:hover, #exit-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
 /* Settings Modal */
 #settings-modal {
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: #1a1a1a;
-    padding: 30px;
-    border: 1px solid #333;
-    display: none;
+    background: #202124;
+    padding: 25px;
+    border: 1px solid #3c4043;
+    display: flex;
     flex-direction: column;
-    gap: 10px;
-    color: white;
-    z-index: 300;
-    border-radius: 10px;
+    gap: 15px;
+    color: #fff;
+    z-index: 2000;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* UI Elements */
+.set-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+#settings-modal input { background: #3c4043; border: none; color: #fff; padding: 5px; border-radius: 4px; }
+#save-settings { background: #8ab4f8; color: #202124; border: none; padding: 8px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+
+/* Home Menu */
 .search-container { display: flex; gap: 10px; }
-input#url-input { background: rgba(0,0,0,0.7); border: 1px solid #444; padding: 15px; width: 350px; color: white; border-radius: 5px; }
-#launch { background: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; border-radius: 5px; }
+input#url-input { background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 15px; width: 400px; color: white; border-radius: 30px; outline: none; }
+#launch { background: white; border: none; padding: 0 25px; font-weight: bold; cursor: pointer; border-radius: 30px; }
 
 .nav-menu { position: absolute; bottom: 50px; display: flex; gap: 20px; }
-.nav-item { background: rgba(0,0,0,0.8); border: 1px solid #333; width: 85px; height: 85px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; }
-.nav-item:hover { background: white; color: black; }
+.nav-item { background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; }
+.nav-item:hover { background: #fff; color: #000; }
 
-#content-viewer { position: fixed; top: 50px; left: 0; width: 100%; height: calc(100% - 50px); border: none; display: none; z-index: 100; background: white; }
+#content-viewer { position: fixed; top: 45px; left: 0; width: 100%; height: calc(100% - 45px); border: none; display: none; z-index: 500; background: white; }
