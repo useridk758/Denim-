@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Denim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denim!</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Ensure these files are in your /public/uv/ folder -->
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
 </head>
 <body>
 
-    <div class="brand">DENIM!</div>
+    <div class="brand">Denim!</div>
 
-    <form class="search-box">
-        <input type="text" placeholder="Search the web freely...">
-        <button type="submit">Launch</button>
+    <form class="search-container">
+        <input type="text" placeholder="Type a URL or search...">
+        <button type="submit" id="launch">GO</button>
     </form>
 
     <div class="nav-menu">
-        <button class="nav-button">Music</button>
-        <button class="nav-button">Games</button>
+        <div class="nav-item">MUSIC</div>
+        <div class="nav-item">GAMES</div>
     </div>
 
     <script src="script.js"></script>
