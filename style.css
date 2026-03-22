@@ -7,9 +7,9 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
 .hidden { display: none !important; opacity: 0; pointer-events: none; }
 .fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
-/* Home UI */
+/* Home UI - DENIM TEARS AESTHETIC */
 .main-wrapper {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("background.jpg") no-repeat center center;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url("background.jpg") no-repeat center center;
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -22,10 +22,10 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
 .brand { 
     font-family: 'Lobster', cursive; 
     color: white; 
-    font-size: 3.2rem; /* Reduced size as requested */
+    font-size: 3.2rem; 
     margin-bottom: 25px; 
     margin-top: -12vh; 
-    text-shadow: 0 4px 15px rgba(0,0,0,0.7); 
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8); 
 }
 
 /* Cinematic Full-Screen Settings */
@@ -61,7 +61,7 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
 .spinner {
     width: 60px; height: 60px;
     border: 5px solid rgba(255, 255, 255, 0.1);
-    border-top: 5px solid #8ab4f8; /* Blue accent */
+    border-top: 5px solid #8ab4f8; 
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -89,11 +89,26 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
 #nav-url-input { width: 60%; background: #222; border: none; border-radius: 20px; padding: 6px 15px; color: #eee; outline: none; }
 
 .search-container { display: flex; gap: 10px; }
-input#url-input { background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 15px; width: 400px; color: white; border-radius: 30px; outline: none; }
+input#url-input { 
+    background: rgba(0,0,0,0.4); 
+    backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255,255,255,0.15); 
+    padding: 15px; width: 400px; 
+    color: white; border-radius: 30px; 
+    outline: none; 
+}
+
 #launch { background: white; border: none; padding: 0 25px; font-weight: bold; cursor: pointer; border-radius: 30px; }
 
 .nav-menu { position: absolute; bottom: 50px; display: flex; gap: 20px; }
-.nav-item { background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; }
+.nav-item { 
+    background: rgba(0,0,0,0.6); 
+    border: 1px solid rgba(255,255,255,0.1); 
+    width: 100px; height: 100px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 0.75rem; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; 
+    backdrop-filter: blur(5px);
+}
 .nav-item:hover { background: #fff; color: #000; }
 
 #content-viewer { position: fixed; top: 45px; left: 0; width: 100%; height: calc(100% - 45px); border: none; display: none; z-index: 500; background: white; transition: opacity 0.5s ease; }
