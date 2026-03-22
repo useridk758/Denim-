@@ -9,7 +9,9 @@
 <body>
     <div id="nav-bar" class="hidden">
         <div class="nav-controls"><div class="nav-btn" onclick="goHome()">🏠</div></div>
-        <div class="url-bar-container"><input type="text" id="nav-url-input" spellcheck="false"></div>
+        <div class="url-bar-container">
+            <input type="text" id="nav-url-input" placeholder="Enter URL..." onkeypress="handleNavEnter(event)">
+        </div>
         <div class="nav-controls"><div id="exit-btn" onclick="goHome()">✕</div></div>
     </div>
 
@@ -18,42 +20,39 @@
             <div class="brand" id="main-title">Denim!</div>
             <div id="subtitle"></div>
         </div>
-        <form class="search-container">
-            <input type="text" id="url-input" placeholder="Search the web or type a URL">
+        <form class="search-container" onsubmit="handleSearch(event)">
+            <input type="text" id="url-input" placeholder="Search the web...">
             <button type="submit" id="launch">GO</button>
         </form>
         <div class="nav-menu">
-            <div class="nav-item" onclick="toggleSettings()">SETTINGS</div>
-            <div class="nav-item" onclick="openMusic()">MUSIC</div>
-            <div class="nav-item" onclick="alert('Games coming soon!')">GAMES</div>
+            <div class="nav-item" id="nav-settings" onclick="toggleSettings()">SETTINGS</div>
+            <div class="nav-item" id="nav-music" onclick="openMusic()">MUSIC</div>
+            <div class="nav-item" id="nav-games" onclick="alert('Games coming soon!')">GAMES</div>
         </div>
     </div>
 
     <div id="settings-modal" class="hidden">
         <div class="settings-container">
             <h2 id="settings-title">Settings</h2>
-            
             <div class="settings-tabs">
-                <div class="tab-btn active" onclick="showTab('optimization')">Optimization</div>
-                <div class="tab-btn" onclick="showTab('customization')">Customization</div>
-                <div class="tab-btn" onclick="showTab('timezone')">Time Zone</div>
-                <div class="tab-btn" onclick="showTab('language')">Language</div>
+                <div class="tab-btn active" onclick="showTab(event, 'optimization')">Optimization</div>
+                <div class="tab-btn" onclick="showTab(event, 'customization')">Customization</div>
+                <div class="tab-btn" onclick="showTab(event, 'timezone')">Time Zone</div>
+                <div class="tab-btn" onclick="showTab(event, 'language')">Language</div>
             </div>
 
             <div class="tab-content" id="optimization">
                 <div class="set-row"><span>Hardware Acceleration</span><input type="checkbox" checked></div>
-                <div class="set-row"><span>Clear Cache</span><button class="mini-btn">Clear</button></div>
             </div>
 
             <div class="tab-content hidden" id="customization">
                 <div class="set-row"><span>Title Color</span><input type="color" id="set-color-input" value="#ffffff"></div>
-                <div class="set-row"><span>Background Blur</span><input type="range" min="0" max="20" value="10"></div>
             </div>
 
             <div class="tab-content hidden" id="timezone">
                 <div class="set-row">
                     <span>Region</span>
-                    <select id="timezone-select" onchange="updateTimeDisplay()">
+                    <select id="timezone-select">
                         <option value="local">Local Time</option>
                         <option value="America/New_York">EST (New York)</option>
                         <option value="America/Los_Angeles">PST (Los Angeles)</option>
@@ -66,11 +65,11 @@
             <div class="tab-content hidden" id="language">
                 <div class="set-row">
                     <span>Site Language</span>
-                    <select>
-                        <option>English</option>
-                        <option>Spanish</option>
-                        <option>French</option>
-                        <option>Japanese</option>
+                    <select id="lang-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="jp">日本語</option>
                     </select>
                 </div>
             </div>
