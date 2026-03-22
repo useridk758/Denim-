@@ -1,90 +1,79 @@
-const ui = document.getElementById('ui');
-const viewer = document.getElementById('content-viewer');
-const navBar = document.getElementById('nav-bar');
-const navUrlInput = document.getElementById('nav-url-input');
-const urlInput = document.getElementById('url-input');
-const modal = document.getElementById('settings-modal');
-const loader = document.getElementById('loader');
 const subtitle = document.getElementById('subtitle');
+let currentTimeZone = "local";
 
-// Random Subtitle Logic
-const phrases = [
-    "join https://discord.gg/UDWHxyG6",
-    "v.3 is out now",
-    "the time is idk"
-];
+// Time Logic
+function updateTimeDisplay() {
+    const tzSelect = document.getElementById('timezone-select');
+    if (tzSelect) currentTimeZone = tzSelect.value;
 
-function setRandomSubtitle() {
+    const phrases = [
+        "join https://discord.gg/UDWHxyG6",
+        "v.3 is out now",
+        getTimeString()
+    ];
+    
+    // Logic to pick a phrase. If you want it random on home, use the previous random logic.
+    // For this makeover, let's keep it on a set cycle or random.
     const randomIndex = Math.floor(Math.random() * phrases.length);
     subtitle.innerText = phrases[randomIndex];
 }
 
-// Call subtitle on load
-setRandomSubtitle();
+function getTimeString() {
+    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    if (currentTimeZone !== "local") options.timeZone = currentTimeZone;
+    
+    const timeStr = new Intl.DateTimeFormat('en-US', options).format(new Date());
+    return `the time is ${timeStr}`;
+}
 
+// Update time every second if the subtitle is showing time
+setInterval(() => {
+    if (subtitle.innerText.includes("the time is")) {
+        subtitle.innerText = getTimeString();
+    }
+}, 1000);
+
+// Tab Logic
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    
+    document.getElementById(tabId).classList.remove('hidden');
+    event.currentTarget.classList.add('active');
+}
+
+// Initial Call
+updateTimeDisplay();
+
+// --- Proxy Logic ---
 function openSite(url, hideUrl = false) {
     if (!url) return;
-    ui.classList.add('fade-out');
-    loader.classList.remove('hidden');
-    loader.style.opacity = "1";
+    document.getElementById('ui').classList.add('fade-out');
+    document.getElementById('loader').classList.remove('hidden');
     setTimeout(() => {
-        if (!url.includes('.') && !hideUrl) {
-            url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
-        } else if (!/^http(s?):\/\//.test(url)) {
-            url = 'https://' + url;
-        }
-        ui.classList.add('hidden');
-        ui.classList.remove('fade-out');
-        viewer.style.display = 'block';
-        viewer.style.opacity = '0';
-        navBar.classList.remove('hidden');
-        navBar.style.display = 'flex';
-        viewer.src = url;
-        navUrlInput.value = hideUrl ? "Music Player" : url;
+        if (!url.includes('.') && !hideUrl) url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
+        else if (!/^http(s?):\/\//.test(url)) url = 'https://' + url;
+        
+        document.getElementById('ui').classList.add('hidden');
+        document.getElementById('content-viewer').style.display = 'block';
+        document.getElementById('nav-bar').classList.remove('hidden');
+        document.getElementById('content-viewer').src = url;
     }, 500);
 }
 
-viewer.onload = () => {
-    loader.classList.add('hidden');
-    viewer.style.opacity = '1';
-};
-
-function openMusic() {
-    openSite('https://monochrome.tf/', true);
-}
+document.getElementById('content-viewer').onload = () => document.getElementById('loader').classList.add('hidden');
 
 function goHome() {
-    viewer.style.opacity = '0';
-    loader.classList.add('hidden');
-    setTimeout(() => {
-        viewer.style.display = 'none';
-        navBar.classList.add('hidden');
-        navBar.style.display = 'none';
-        ui.classList.remove('hidden');
-        viewer.src = '';
-        urlInput.value = '';
-        setRandomSubtitle(); // Get a new random phrase when returning home
-    }, 500);
+    document.getElementById('content-viewer').style.display = 'none';
+    document.getElementById('nav-bar').classList.add('hidden');
+    document.getElementById('ui').classList.remove('hidden');
+    document.getElementById('ui').classList.remove('fade-out');
+    updateTimeDisplay();
 }
 
-document.querySelector('.search-container').addEventListener('submit', (e) => {
-    e.preventDefault();
-    openSite(urlInput.value);
-});
-
-navUrlInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') openSite(navUrlInput.value);
-});
-
 function toggleSettings() {
-    if (modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-        modal.style.opacity = "0";
-        setTimeout(() => modal.style.opacity = "1", 10);
-    } else {
-        modal.style.opacity = "0";
-        setTimeout(() => modal.classList.add('hidden'), 400);
-    }
+    const modal = document.getElementById('settings-modal');
+    modal.classList.toggle('hidden');
 }
 
 function saveSettings() {
@@ -92,3 +81,5 @@ function saveSettings() {
     document.getElementById('main-title').style.color = colorVal;
     toggleSettings();
 }
+
+function openMusic() { openSite('https://monochrome.tf/', true); }
