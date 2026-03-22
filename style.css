@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body, html { height: 100%; width: 100%; overflow: hidden; background: #000; }
@@ -16,7 +16,14 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; }
     justify-content: center;
 }
 
-.brand { font-family: 'Lobster', cursive; color: white; font-size: 2.2rem; margin-bottom: 25px; margin-top: -12vh; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.brand { 
+    font-family: 'Lobster', cursive; 
+    color: white; 
+    font-size: 2.2rem; 
+    margin-bottom: 25px; 
+    margin-top: -12vh; 
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+}
 
 /* Browser-Style Nav Bar */
 #nav-bar {
