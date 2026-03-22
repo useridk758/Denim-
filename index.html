@@ -8,22 +8,16 @@
 </head>
 <body>
     <div id="nav-bar" class="hidden">
-        <div class="nav-controls">
-            <div class="nav-btn" onclick="goHome()">🏠</div>
-        </div>
-        <div class="url-bar-container">
-            <input type="text" id="nav-url-input" spellcheck="false">
-        </div>
-        <div class="nav-controls">
-            <div id="exit-btn" onclick="goHome()">✕</div>
-        </div>
+        <div class="nav-controls"><div class="nav-btn" onclick="goHome()">🏠</div></div>
+        <div class="url-bar-container"><input type="text" id="nav-url-input" spellcheck="false"></div>
+        <div class="nav-controls"><div id="exit-btn" onclick="goHome()">✕</div></div>
     </div>
 
     <div class="main-wrapper" id="ui">
         <div class="brand-container">
             <div class="brand" id="main-title">Denim!</div>
-            <div id="subtitle"></div> </div>
-        
+            <div id="subtitle"></div>
+        </div>
         <form class="search-container">
             <input type="text" id="url-input" placeholder="Search the web or type a URL">
             <button type="submit" id="launch">GO</button>
@@ -36,12 +30,51 @@
     </div>
 
     <div id="settings-modal" class="hidden">
-        <div class="settings-content">
-            <h2 id="settings-header">Settings</h2>
-            <div class="set-row">
-                <span>Title Color:</span>
-                <input type="color" id="set-color-input" value="#ffffff">
+        <div class="settings-container">
+            <h2 id="settings-title">Settings</h2>
+            
+            <div class="settings-tabs">
+                <div class="tab-btn active" onclick="showTab('optimization')">Optimization</div>
+                <div class="tab-btn" onclick="showTab('customization')">Customization</div>
+                <div class="tab-btn" onclick="showTab('timezone')">Time Zone</div>
+                <div class="tab-btn" onclick="showTab('language')">Language</div>
             </div>
+
+            <div class="tab-content" id="optimization">
+                <div class="set-row"><span>Hardware Acceleration</span><input type="checkbox" checked></div>
+                <div class="set-row"><span>Clear Cache</span><button class="mini-btn">Clear</button></div>
+            </div>
+
+            <div class="tab-content hidden" id="customization">
+                <div class="set-row"><span>Title Color</span><input type="color" id="set-color-input" value="#ffffff"></div>
+                <div class="set-row"><span>Background Blur</span><input type="range" min="0" max="20" value="10"></div>
+            </div>
+
+            <div class="tab-content hidden" id="timezone">
+                <div class="set-row">
+                    <span>Region</span>
+                    <select id="timezone-select" onchange="updateTimeDisplay()">
+                        <option value="local">Local Time</option>
+                        <option value="America/New_York">EST (New York)</option>
+                        <option value="America/Los_Angeles">PST (Los Angeles)</option>
+                        <option value="Europe/London">GMT (London)</option>
+                        <option value="Asia/Tokyo">JST (Tokyo)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="language">
+                <div class="set-row">
+                    <span>Site Language</span>
+                    <select>
+                        <option>English</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                        <option>Japanese</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="settings-actions">
                 <button id="save-settings" onclick="saveSettings()">Apply Changes</button>
                 <button id="close-settings" onclick="toggleSettings()">Cancel</button>
@@ -49,13 +82,9 @@
         </div>
     </div>
 
-    <div id="loader" class="hidden">
-        <div class="spinner"></div>
-    </div>
-
+    <div id="loader" class="hidden"><div class="spinner"></div></div>
     <iframe id="content-viewer"></iframe>
 
-    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
