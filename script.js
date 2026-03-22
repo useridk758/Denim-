@@ -4,11 +4,11 @@ const navBar = document.getElementById('nav-bar');
 const navUrlInput = document.getElementById('nav-url-input');
 const urlInput = document.getElementById('url-input');
 const modal = document.getElementById('settings-modal');
+const loader = document.getElementById('loader');
 
 function openSite(url, hideUrl = false) {
     if (!url) return;
     
-    // Fade UI out
     ui.classList.add('fade-out');
     
     setTimeout(() => {
@@ -21,29 +21,32 @@ function openSite(url, hideUrl = false) {
         ui.classList.add('hidden');
         ui.classList.remove('fade-out');
         
+        // Show loader while the site loads
+        loader.classList.remove('hidden');
+        
         viewer.style.display = 'block';
         viewer.style.opacity = '0';
         navBar.classList.remove('hidden');
         navBar.style.display = 'flex';
         
         viewer.src = url;
-        // If hideUrl is true (for Music), we set a fake label or keep it blank
         navUrlInput.value = hideUrl ? "Music Player" : url;
-        
-        // Fade Viewer in
-        setTimeout(() => {
-            viewer.style.opacity = '1';
-        }, 50);
     }, 500);
 }
 
+// Hide loader and show viewer when iframe is done
+viewer.onload = () => {
+    loader.classList.add('hidden');
+    viewer.style.opacity = '1';
+};
+
 function openMusic() {
-    // Specifically opens the music site with the URL hidden
     openSite('https://monochrome.tf/', true);
 }
 
 function goHome() {
     viewer.style.opacity = '0';
+    loader.classList.add('hidden'); // Ensure loader is hidden
     setTimeout(() => {
         viewer.style.display = 'none';
         navBar.classList.add('hidden');
