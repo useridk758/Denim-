@@ -9,13 +9,11 @@ const loader = document.getElementById('loader');
 function openSite(url, hideUrl = false) {
     if (!url) return;
     
-    // Start Fade & Show Loader
     ui.classList.add('fade-out');
     loader.classList.remove('hidden');
     loader.style.opacity = "1";
 
     setTimeout(() => {
-        // Search logic
         if (!url.includes('.') && !hideUrl) {
             url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
         } else if (!/^http(s?):\/\//.test(url)) {
@@ -31,19 +29,16 @@ function openSite(url, hideUrl = false) {
         navBar.style.display = 'flex';
         
         viewer.src = url;
-        // Hide URL if it's the music player
         navUrlInput.value = hideUrl ? "Music Player" : url;
     }, 500);
 }
 
-// When the site is done loading, swap spinner for the content
 viewer.onload = () => {
     loader.classList.add('hidden');
     viewer.style.opacity = '1';
 };
 
 function openMusic() {
-    // Fades into Monochrome.tf and hides the link
     openSite('https://monochrome.tf/', true);
 }
 
