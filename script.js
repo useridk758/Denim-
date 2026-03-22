@@ -5,29 +5,40 @@ const navUrlInput = document.getElementById('nav-url-input');
 const urlInput = document.getElementById('url-input');
 const modal = document.getElementById('settings-modal');
 const loader = document.getElementById('loader');
+const subtitle = document.getElementById('subtitle');
+
+// Random Subtitle Logic
+const phrases = [
+    "join https://discord.gg/UDWHxyG6",
+    "v.3 is out now",
+    "the time is idk"
+];
+
+function setRandomSubtitle() {
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    subtitle.innerText = phrases[randomIndex];
+}
+
+// Call subtitle on load
+setRandomSubtitle();
 
 function openSite(url, hideUrl = false) {
     if (!url) return;
-    
     ui.classList.add('fade-out');
     loader.classList.remove('hidden');
     loader.style.opacity = "1";
-
     setTimeout(() => {
         if (!url.includes('.') && !hideUrl) {
             url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
         } else if (!/^http(s?):\/\//.test(url)) {
             url = 'https://' + url;
         }
-        
         ui.classList.add('hidden');
         ui.classList.remove('fade-out');
-        
         viewer.style.display = 'block';
         viewer.style.opacity = '0';
         navBar.classList.remove('hidden');
         navBar.style.display = 'flex';
-        
         viewer.src = url;
         navUrlInput.value = hideUrl ? "Music Player" : url;
     }, 500);
@@ -52,6 +63,7 @@ function goHome() {
         ui.classList.remove('hidden');
         viewer.src = '';
         urlInput.value = '';
+        setRandomSubtitle(); // Get a new random phrase when returning home
     }, 500);
 }
 
