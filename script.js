@@ -3,12 +3,12 @@ const viewer = document.getElementById('content-viewer');
 const navBar = document.getElementById('nav-bar');
 const navUrlInput = document.getElementById('nav-url-input');
 const urlInput = document.getElementById('url-input');
+const modal = document.getElementById('settings-modal');
 
 function openSite(url) {
     if (!url) return;
-    // Format URL
     if (!url.includes('.')) {
-        url = 'https://www.google.com' + encodeURIComponent(url);
+        url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
     } else if (!/^http(s?):\/\//.test(url)) {
         url = 'https://' + url;
     }
@@ -30,7 +30,6 @@ function goHome() {
     urlInput.value = '';
 }
 
-// Search Listeners
 document.querySelector('.search-container').addEventListener('submit', (e) => {
     e.preventDefault();
     openSite(urlInput.value);
@@ -40,17 +39,20 @@ navUrlInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') openSite(navUrlInput.value);
 });
 
-// Settings Logic
+// Settings Logic with Fade
 function toggleSettings() {
-    document.getElementById('settings-modal').classList.toggle('hidden');
+    if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        modal.style.opacity = "0";
+        setTimeout(() => modal.style.opacity = "1", 10);
+    } else {
+        modal.style.opacity = "0";
+        setTimeout(() => modal.classList.add('hidden'), 400);
+    }
 }
 
 function saveSettings() {
-    const titleVal = document.getElementById('set-title-input').value;
     const colorVal = document.getElementById('set-color-input').value;
-    
-    if (titleVal) document.getElementById('main-title').innerText = titleVal;
     document.getElementById('main-title').style.color = colorVal;
-    
     toggleSettings();
 }
