@@ -3,11 +3,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
 
-/* Transitions & Global States */
 .hidden { display: none !important; opacity: 0; pointer-events: none; }
 .fade-out { opacity: 0 !important; transition: opacity 0.5s ease; }
 
-/* Home UI - DENIM TEARS AESTHETIC */
 .main-wrapper {
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url("background.jpg") no-repeat center center;
     background-size: cover;
@@ -19,16 +17,30 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
     transition: opacity 0.5s ease;
 }
 
+/* Container for Title and Subtitle */
+.brand-container {
+    text-align: center;
+    margin-top: -12vh;
+    margin-bottom: 25px;
+}
+
 .brand { 
     font-family: 'Lobster', cursive; 
     color: white; 
     font-size: 3.2rem; 
-    margin-bottom: 25px; 
-    margin-top: -12vh; 
     text-shadow: 0 4px 20px rgba(0,0,0,0.8); 
 }
 
-/* Cinematic Full-Screen Settings */
+#subtitle {
+    color: rgba(255, 255, 255, 0.5); /* 50% transparent */
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Settings, Loader, and Nav remain the same */
 #settings-modal {
     position: fixed;
     top: 0; left: 0;
@@ -46,7 +58,6 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
 #settings-header { font-family: 'Lobster', cursive; font-size: 2.5rem; margin-bottom: 30px; }
 .set-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
-/* Loading Spinner */
 #loader {
     position: fixed;
     top: 0; left: 0;
@@ -66,12 +77,8 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
     animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Browser Elements */
 #nav-bar {
     position: fixed;
     top: 0; left: 0; width: 100%;
@@ -79,8 +86,7 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
     background: #111;
     display: flex;
     align-items: center;
-    padding: 0 10px;
-    gap: 10px;
+    padding: 0 10px; gap: 10px;
     z-index: 1000;
     border-bottom: 1px solid #333;
 }
@@ -89,15 +95,7 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font
 #nav-url-input { width: 60%; background: #222; border: none; border-radius: 20px; padding: 6px 15px; color: #eee; outline: none; }
 
 .search-container { display: flex; gap: 10px; }
-input#url-input { 
-    background: rgba(0,0,0,0.4); 
-    backdrop-filter: blur(15px); 
-    border: 1px solid rgba(255,255,255,0.15); 
-    padding: 15px; width: 400px; 
-    color: white; border-radius: 30px; 
-    outline: none; 
-}
-
+input#url-input { background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.15); padding: 15px; width: 400px; color: white; border-radius: 30px; outline: none; }
 #launch { background: white; border: none; padding: 0 25px; font-weight: bold; cursor: pointer; border-radius: 30px; }
 
 .nav-menu { position: absolute; bottom: 50px; display: flex; gap: 20px; }
@@ -112,7 +110,6 @@ input#url-input {
 .nav-item:hover { background: #fff; color: #000; }
 
 #content-viewer { position: fixed; top: 45px; left: 0; width: 100%; height: calc(100% - 45px); border: none; display: none; z-index: 500; background: white; transition: opacity 0.5s ease; }
-
 .settings-actions { display: flex; flex-direction: column; gap: 12px; }
 #save-settings, #close-settings { padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; }
 #save-settings { background: #fff; color: #000; }
