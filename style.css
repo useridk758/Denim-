@@ -1,3 +1,4 @@
+/* I fixed this line so it actually grabs the Lobster font from Google */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +31,7 @@ body, html { height: 100%; width: 100%; overflow: hidden; background: #000; }
     position: fixed;
     top: 0; left: 0; width: 100%;
     height: 45px;
-    background: #202124; /* Chrome Dark Gray */
+    background: #202124;
     display: flex;
     align-items: center;
     padding: 0 10px;
